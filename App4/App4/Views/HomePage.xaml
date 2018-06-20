@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App4.Views.HomePage"
+              Title="Home"
+     BackgroundColor="#533F95"
+    xmlns:toolkitcustom="clr-namespace:App4.Custom">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DisplayDataValueStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="Times New Roman" />
+                <Setter Property="TextColor" Value="#1B3B5F" />
+                <Setter Property="FontSize" Value="15" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" RowSpacing="0" Padding="0,0,0,0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Padding="20,20,20,10">
+                <Button BackgroundColor="White" TextColor="#533F95" FontSize="15" FontAttributes="Bold" BorderRadius="0" Text="Custom TabbedPage" HorizontalOptions="FillAndExpand"/>
+            </Grid>
+            <toolkitcustom:RibbonView x:Name="ribbonViews" Padding="20,0,20,0"
+                Grid.Row="1"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="Transparent"
+                BarColor="White"
+                TextColor="White"
+                Style="{StaticResource DisplayDataValueStyle}"
+                ItemsSource="{Binding RibbonOptions}"
+                ItemSelected="{Binding OptionSelectionChangedCommand}"/>
+            <WebView x:Name="webview" Source="{Binding LoadURI}" BackgroundColor="White" Margin="5" Grid.Row="2" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Grid.Row="2" HeightRequest="50" WidthRequest="50" Color="Maroon" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
